@@ -9,7 +9,7 @@ echo "nexus   ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/nexus
 sudo chown -R nexus:nexus nexus
 sudo chown -R nexus:nexus sonatype-work
 echo "fail2"
-sed -i 's/#run_as_user=""/run_as_user="nexus"/' /nexus/bin/nexus.rc
+sed -i 's/#run_as_user=""/run_as_user="nexus"/' nexus/bin/nexus.rc
 echo "fail3"
 cat > /etc/systemd/system/nexus.service << 'EOL'
 [Unit]
