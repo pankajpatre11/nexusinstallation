@@ -33,5 +33,4 @@ sudo systemctl enable nexus
 sudo systemctl status nexus
 sudo systemctl stop nexus
 echo "fail5"
-tail -f /sonatype-work/nexus3/log/nexus.log
 ufw allow 8081/tcp
