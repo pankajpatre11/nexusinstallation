@@ -10,7 +10,6 @@ sudo chown -R nexus:nexus /nexus
 sudo chown -R nexus:nexus /sonatype-work
 echo "fail2"
 sed -i 's/#run_as_user=""/run_as_user="nexus"/' /nexus/bin/nexus.rc
-netstat -altnp | grep :8081
 echo "fail3"
 cat > /etc/systemd/system/nexus.service << 'EOL'
 [Unit]
