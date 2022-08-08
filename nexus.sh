@@ -11,26 +11,26 @@ sudo chown -R nexus:nexus sonatype-work
 echo "fail2"
 sed -i 's/#run_as_user=""/run_as_user="nexus"/' nexus/bin/nexus.rc
 echo "fail3"
-cat > /etc/systemd/system/nexus.service << 'EOL'
-[Unit]
-Description=nexus service
-After=network.target
+# cat > /etc/systemd/system/nexus.service << 'EOL'
+# [Unit]
+# Description=nexus service
+# After=network.target
 
-[Service]
-Type=forking
-LimitNOFILE=65536
-ExecStart=/nexus/bin/nexus start
-ExecStop=/nexus/bin/nexus stop
-User=nexus
-Restart=on-abort
+# [Service]
+# Type=forking
+# LimitNOFILE=65536
+# ExecStart=/nexus/bin/nexus start
+# ExecStop=/nexus/bin/nexus stop
+# User=nexus
+# Restart=on-abort
 
-[Install]
-WantedBy=multi-user.target
-EOL
-echo "fail4"
-sudo systemctl start nexus
-sudo systemctl enable nexus
-sudo systemctl status nexus
-sudo systemctl stop nexus
-echo "fail5"
-ufw allow 8081/tcp
+# [Install]
+# WantedBy=multi-user.target
+# EOL
+# echo "fail4"
+# sudo systemctl start nexus
+# sudo systemctl enable nexus
+# sudo systemctl status nexus
+# sudo systemctl stop nexus
+# echo "fail5"
+# ufw allow 8081/tcp
