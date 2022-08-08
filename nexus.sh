@@ -3,12 +3,15 @@ sudo apt install openjdk-8-jre-headless
 sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
 tar -zxvf latest-unix.tar.gz
 sudo mv /nexus-3.41.0-01 /nexus
+echo "fail1"
 sudo adduser nexus
 echo "nexus   ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/nexus
 sudo chown -R nexus:nexus /nexus
 sudo chown -R nexus:nexus /sonatype-work
+echo "fail2"
 sed -i 's/#run_as_user=""/run_as_user="nexus"/' /nexus/bin/nexus.rc
 netstat -altnp | grep :8081
+echo "fail3"
 cat > /etc/systemd/system/nexus.service << 'EOL'
 [Unit]
 Description=nexus service
@@ -25,9 +28,11 @@ Restart=on-abort
 [Install]
 WantedBy=multi-user.target
 EOL
+echo "fail4"
 sudo systemctl start nexus
 sudo systemctl enable nexus
 sudo systemctl status nexus
 sudo systemctl stop nexus
+echo "fail5"
 tail -f /sonatype-work/nexus3/log/nexus.log
 ufw allow 8081/tcp
