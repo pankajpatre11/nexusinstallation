@@ -7,8 +7,7 @@ sudo adduser nexus
 echo "nexus   ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/nexus
 sudo chown -R nexus:nexus /nexus
 sudo chown -R nexus:nexus /sonatype-work
-sudo nano /nexus/bin/nexus.rc
-sed -i 's/#run_as_user=""/run_as_user="nexus"/' /opt/nexus/bin/nexus.rc
+sed -i 's/#run_as_user=""/run_as_user="nexus"/' /nexus/bin/nexus.rc
 netstat -altnp | grep :8081
 cat > /etc/systemd/system/nexus.service << 'EOL'
 [Unit]
@@ -30,5 +29,5 @@ sudo systemctl start nexus
 sudo systemctl enable nexus
 sudo systemctl status nexus
 sudo systemctl stop nexus
-tail -f /opt/sonatype-work/nexus3/log/nexus.log
+tail -f /sonatype-work/nexus3/log/nexus.log
 ufw allow 8081/tcp
